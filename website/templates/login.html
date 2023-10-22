@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+  /* Style the form container */
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Style form labels */
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Style form inputs */
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+/* Style radio buttons */
+.form-check-input {
+    margin-right: 5px;
+}
+
+/* Style the submit button */
+button[type="submit"] {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Change button color on hover */
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Center the form within its container */
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+/* Add some spacing to the top of the form */
+.mb-3 {
+    margin-top: 10px;
+}
+
+</style>
+<div align = 'center'>
+  <h2>Welcome To School Management System</h2>
+</div>
+<form action="/login" method="post">
+    <div class="row mb-3">
+      <label for="email" class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" required="True" id="email" name="email">
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label for="password" class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-10">
+        <input type="password" class="form-control" required="True" id="password" name="password" >
+      </div>
+    </div>
+    <fieldset class="row mb-3">
+      <legend class="col-form-label col-sm-2 pt-0">Role</legend>
+      <div class="col-sm-10">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="role" id="role" value="Teacher" checked>
+          <label class="form-check-label" for="gridRadios1">
+            Teacher
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="role" id="role" value="Student" checked>
+          <label class="form-check-label" for="gridRadios2">
+            Student
+          </label>
+        </div>
+        <div class="form-check disabled">
+          <input class="form-check-input" type="radio" name="role" id="role" value="Admin" checked>
+          <label class="form-check-label" for="gridRadios3">
+            Admin
+          </label>
+        </div>
+      </div>
+    </fieldset>
+    <button type="submit" class="btn btn-primary">Sign in</button>
+  </form>
+{% endblock %}

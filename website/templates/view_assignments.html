@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    /* Style for the assignment cards */
+.card {
+  width: 18rem;
+  margin: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #333;
+}
+
+.card-link {
+  display: block;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+/* Center the cards horizontally */
+.card-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+</style>
+
+<ul class="nav">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="/homepage_student">Home Page</a>
+  </li>
+</ul>
+
+<ul class="nav justify-content-end">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="/logout">Logout</a>
+  </li>
+</ul>
+
+{% for assignment in assignments %}
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title"> {{assignment.name}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted"></h6>
+      <p class="card-text">{{assignment.description}}</p>
+      <a href="" class="card-link">due date : {{assignment.due_date}}</a>
+      <a href="/submit_assignment" class="card-link">submit assignment</a>
+    </div>
+  </div>
+  {% endfor %}
+  {% endblock %}

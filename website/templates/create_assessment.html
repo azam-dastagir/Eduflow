@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block navbar %}
+<ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="/homepage_teacher">Home Page</a>
+    </li>
+  </ul>
+  <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="/add_question">Add Questions to Existing Assessment</a>
+    </li>
+  </ul>
+{% endblock %}
+
+{% block content %}
+
+
+<div>
+    <h4 align='center'>Add Assessment</h4>
+</div>
+<form class="form-floating" action="/create_assessment" method="post">
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control form-control-sm" id="assessment_name" name="assessment_name" placeholder="Assessment Name" required>
+        <label for="assessment_name">Assessment Name</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control form-control-sm" id="teacher_id" name="teacher_id" placeholder="Teacher ID" required>
+        <label for="teacher_id">Teacher ID</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control form-control-sm" id="class_id" name="class_id" placeholder="Class ID" required>
+        <label for="class_id">Class ID</label>
+    </div>
+
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary btn-sm">Add Assessment</button>
+    </div>
+</form>
+{% endblock %}

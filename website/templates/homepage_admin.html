@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+<nav class="navbar navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Mother Lap English Medium School</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+       
+        <a class="nav-link active" href="#">Approve leave</a>
+        <a class="nav-link active" href="#">Check Teacher Atendance</a>
+        <a class="nav-link active" href="/add_student">Add Student</a>
+        <a class="nav-link active" href="/add_class">Add Class</a>
+        <a class="nav-link active" href="/add_subject">Add Subject</a>
+        <a class="nav-link active" href="/add_period">Add Period</a>
+        <a class="nav-link active" href="/logout">Logout</a>
+
+
+      </div>
+    </div>
+  </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<style>/* Style for the button container */
+    .button-container {
+      display: flex;
+      justify-content: center; /* Horizontally center-align items */
+      align-items: center; /* Vertically center-align items */
+      height: 100vh; /* Make the container full viewport height */
+    }
+    
+    /* Style for the buttons */
+    .btn {
+      margin: 10px;
+      padding: 8px 16px; /* Adjust padding to make the buttons smaller */
+      font-size: 14px; /* Adjust font size to make the text smaller */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    .btn-secondary {
+      background-color: #007bff; /* Primary color */
+      color: #fff; /* Text color */
+    }
+    
+    .btn-secondary:hover {
+      background-color: #0056b3; /* Darker shade of primary color */
+    }
+    
+    .btn-info {
+      background-color: #17a2b8; /* Info color */
+      color: #fff; /* Text color */
+    }
+    
+    .btn-info:hover {
+      background-color: #138496; /* Darker shade of info color */
+    }
+    
+</style>
+
+<div class="button-container">
+  <a href="/calculate_attendance">
+    <button type="button" class="btn btn-secondary">Attendance stats</button>
+  </a>
+  <a href="/add_teacher">
+    <button type="button" class="btn btn-info">Add teacher</button>
+  </a>
+  <a href="/view_teachers">
+  <button type="button" class="btn btn-info">View teachers</button>
+</a>
+</div>
+{% endblock %}

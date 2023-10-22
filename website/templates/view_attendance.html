@@ -1,0 +1,232 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: auto;
+    }
+
+    h4 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    dl.row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    dt.col-sm-3 {
+        flex: 0 0 30%;
+        max-width: 30%;
+        text-align: right;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #007bff;
+    }
+
+    dd.col-sm-9 {
+        flex: 0 0 65%;
+        max-width: 65%;
+        margin-bottom: 10px;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    .col-sm-9 {
+        padding-left: 15px;
+    }
+</style>
+{% if role == 'teacher' %}
+<ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="/homepage_teacher">Home Page</a>
+    </li>
+  </ul>
+  <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="/calculate_attendance">Back</a>
+    </li>
+  </ul>
+  <ul class="nav justify-content-end">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="/logout">Logout</a>
+    </li>
+  </ul>
+  {% endif %}
+
+  {% if role == 'student' %}
+<ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="/homepage_student">Home Page</a>
+    </li>
+  </ul>
+  <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="/calculate_student_attendance">Back</a>
+    </li>
+  </ul>
+  <ul class="nav justify-content-end">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="/logout">Logout</a>
+    </li>
+  </ul>
+  {% endif %}
+
+{% if role == 'admin' %}
+<ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="/homepage_admin">Home Page</a>
+    </li>
+  </ul>
+  <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="/calculate_attendance">Back</a>
+    </li>
+  </ul>
+  <ul class="nav justify-content-end">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="/logout">Logout</a>
+    </li>
+  </ul>
+  {% endif %}
+  
+
+<h4><div align = "center">Attendance
+</div></h4>
+{% if class_attendance_percentage %}
+<dl class="row">
+    <dt class="col-sm-3">Class Id</dt>
+    <dd class="col-sm-9">{{class_id}}</dd>
+  
+    <dt class="col-sm-3"> Total students in class: </dt>
+    <dd class="col-sm-9">
+      {{total_students_in_class}}
+    </dd>
+  
+    <dt class="col-sm-3">Number of students present:</dt>
+    <dd class="col-sm-9"><p>
+        {{attendance_count}}</p>
+        </dd>
+    <dt class="col-sm-3">Number of students absent:</dt>
+    <dd class="col-sm-9">
+        {{num_of_students_absent}}
+        </dd>
+  
+    <dt class="col-sm-3 text-truncate">Attendance percentage</dt>
+    <dd class="col-sm-9">{{class_attendance_percentage}}</dd>
+  </dl>
+  {% endif %}
+
+  {% if student_id and from_date %}
+  <dl class="row">
+    <dt class="col-sm-3">Class Id</dt>
+    <dd class="col-sm-9">{{class_id}}</dd>
+    <dl class="row">
+        <dt class="col-sm-3">Student Id</dt>
+        <dd class="col-sm-9">{{student_id}}</dd>
+  
+    <dt class="col-sm-3"> from date: </dt>
+    <dd class="col-sm-9">
+      {{from_date}}
+    </dd>
+  
+    <dt class="col-sm-3">to date:</dt>
+    <dd class="col-sm-9"><p>
+        {{to_date}}</p>
+        </dd>
+
+        <dt class="col-sm-3">total number of days:</dt>
+    <dd class="col-sm-9"><p>
+        {{total_days}}</p>
+        </dd>
+
+        <dt class="col-sm-3">number of days present:</dt>
+    <dd class="col-sm-9"><p>
+        {{attendance_count}}</p>
+        </dd>
+        
+  
+    <dt class="col-sm-3 text-truncate">Attendance percentage:</dt>
+    <dd class="col-sm-9">{{attendance_percentage}}</dd>
+  </dl>
+
+  {% endif %}
+
+
+  {% if student_id and in_month %}
+  <dl class="row">
+    <dt class="col-sm-3">Class Id</dt>
+    <dd class="col-sm-9">{{class_id}}</dd>
+    <dl class="row">
+        <dt class="col-sm-3">Student Id</dt>
+        <dd class="col-sm-9">{{student_id}}</dd>
+  
+    <dt class="col-sm-3"> in month </dt>
+    <dd class="col-sm-9">
+      {{in_month}}
+    </dd>
+
+        <dt class="col-sm-3">total number of days:</dt>
+    <dd class="col-sm-9"><p>
+        {{total_days}}</p>
+        </dd>
+
+        <dt class="col-sm-3">number of days present:</dt>
+    <dd class="col-sm-9"><p>
+        {{attendance_count}}</p>
+        </dd>
+        
+  
+    <dt class="col-sm-3 text-truncate">Attendance percentage:</dt>
+    <dd class="col-sm-9">{{attendance_percentage}}</dd>
+  </dl>
+
+
+  {% endif %}
+
+  {% if class_id and in_month %}
+  <dl class="row">
+    <dt class="col-sm-3">Class Id</dt>
+    <dd class="col-sm-9">{{class_id}}</dd>
+  
+    <dt class="col-sm-3"> in month </dt>
+    <dd class="col-sm-9">
+      {{in_month}}
+    </dd>
+
+        <dt class="col-sm-3">total number of days:</dt>
+    <dd class="col-sm-9"><p>
+        {{total_days}}</p>
+        </dd>
+
+        <dt class="col-sm-3">number of days present:</dt>
+    <dd class="col-sm-9"><p>
+        {{attendance_count}}</p>
+        </dd>
+        
+  
+    <dt class="col-sm-3 text-truncate">Attendance percentage:</dt>
+    <dd class="col-sm-9">{{attendance_percentage}}</dd>
+  </dl>
+  {{value}}
+
+  {% endif %}
+  {% endblock %}

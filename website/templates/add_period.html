@@ -1,0 +1,106 @@
+
+<html>
+    {% extends 'base.html' %}
+    {% block content %}
+    <body>
+        <style>
+            /* Style for the form container */
+         form {
+           max-width: 500px;
+           margin: 0 auto;
+           padding: 20px;
+         }
+         
+         /* Style for the input fields */
+         input[type="text"],
+         input[type="email"],
+         input[type="password"] {
+           width: 100%;
+           padding: 10px;
+           margin-bottom: 10px;
+           border: 1px solid #ccc;
+           border-radius: 5px;
+         }
+         
+         /* Style for the labels */
+         label {
+           font-weight: normal;
+         }
+         
+         /* Style for the submit buttons */
+         button[type="submit"] {
+           display: block;
+           width: 100%;
+           padding: 10px;
+           background-color: #007bff; /* Primary color */
+           color: #fff; /* Text color */
+           border: none;
+           border-radius: 5px;
+           cursor: pointer;
+         }
+         
+         /* Style for the submit buttons on hover */
+         button[type="submit"]:hover {
+           background-color: #0056b3; /* Darker shade of primary color */
+         }
+         
+         /* Style for the form header */
+         h4 {
+           margin-top: 20px;
+           font-size: 1.5rem;
+         }       
+         </style>
+
+<ul class="nav">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="/homepage_admin">Home Page</a>
+  </li>
+</ul>
+<ul class="nav justify-content-end">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="/logout">Logout</a>
+  </li>
+</ul>
+<div>
+    <h4 align = 'center'>Add Period</h4></div>
+    <form class="form-floating" action="/add_period" method="post">
+      <div class="form-floating">
+      <input type="text" class="form-control"  id="floatingInputValue" required = "True"  name="class_id">
+      <label for="floatingInputValue">Class Id</label>
+  </div>
+  <div class="form-floating">
+    <input type="text" class="form-control" id="floatingInputValue" required = "True" name="period_number">
+    <label for="floatingInputValue">Period number</label>
+</div>
+
+
+<div class="form-floating">
+    <input type="time" class="form-control" id="floatingPassword" required = "True" name="start_time">
+    <label for="floatingPassword">Start time</label>
+</div>
+
+<div class="form-floating">
+    <input type="time" class="form-control" id="floatingPassword" required = "True" name="end_time">
+    <label for="floatingPassword">End time</label>
+</div>
+  
+    <div class="form-floating">
+        <input type="text" class="form-control" id="floatingPassword" required = "True" name="subject_id">
+        <label for="floatingPassword">Subjects Id</label>
+    </div>
+
+
+
+      
+      <div class="form-floating">
+        <input type="text" class="form-control" id="floatingPassword" required = "True" name="teacher_id">
+        <label for="floatingPassword">Teacher Id</label>
+    </div>
+  
+  <div class="col-auto">
+      <button type="submit" class="btn btn-primary mb-3">Add Period</button>
+    </div>
+  </form>
+</body>
+{% endblock %}
+  </html>

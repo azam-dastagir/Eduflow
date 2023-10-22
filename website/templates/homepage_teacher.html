@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block navbar %}
+<nav class="navbar navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Mother Lap English Medium School</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+  
+        <a class="nav-link active" href="/calculate_attendance">Attendance stats</a>
+        <a class="nav-link active" href="/get_period_attendance_page">get_attendance_for_a_subject</a>
+        <a class="nav-link active" href="/add_student">Add new Student</a>
+        <a class="nav-link active" href="/add_assignment">Add Assignment</a>
+        <a class="nav-link active" href="/send_reports">Send Attendance Reports</a>
+        <a class="nav-link active" href="/create_assessment">Create Assessment</a>
+        <a class="nav-link active" href="/send_assessment_reports">Send Assessment Reports</a>
+        <a class="nav-link active" href="/logout">Logout</a>
+
+      </div>
+    </div>
+  </div>
+</nav>
+
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h4 class="mb-4">Your Teaching Schedule</h4>
+  <div class="row">
+    {% for period in periods %}
+    <div class="col-12 col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ period.subject.subject_name }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Period {{ period.period_number }}</h6>
+          <p class="card-text">
+            <strong>Class:</strong> {{ period.period_class.name }}<br>
+            <strong>Start Time:</strong> {{ period.start_time.strftime('%I:%M %p') }}<br>
+            <strong>End Time:</strong> {{ period.end_time.strftime('%I:%M %p') }}
+          </p>
+          <a href="/attendance_list?period_number={{ period.period_number }}&class_id={{ period.class_id }}" class="card-link btn btn-primary">Take Attendance</a>       </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+
+
+
+
+<form class="form-floating" action="/attendance" method="post">
+  <div class="form-floating">
+      <input type="text" class="form-control" id="floatingInput"  name="class_id">
+      <label for="floatingInput">class id</label>
+</div>
+  <div class="col-auto">
+    <button type="submit" class="btn btn-primary mb-3">Take Attendance</button>
+  </div>
+
+</form>

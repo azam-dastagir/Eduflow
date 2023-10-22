@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+<ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="/homepage_teacher">Home Page</a>
+    </li>
+  </ul>
+  <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="/create_assessment">Back</a>
+    </li>
+  </ul>
+  <ul class="nav justify-content-end">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="/logout">Logout</a>
+    </li>
+  </ul>
+{% endblock %}  
+
+{% block content %}
+<body>
+    <div class="container">
+        <h1 class="mt-5">Add Question</h1>
+        <form action="/add_question" method="post">
+            <div class="mb-3">
+                <label for="assessmentId" class="form-label">Assessment ID</label>
+                <input type="text" class="form-control" id="assessmentId" name="assessment_id" required>
+            </div>
+            <div class="mb-3">
+                <label for="questionText" class="form-label">Question Text</label>
+                <input type="text" class="form-control" id="questionText" name="question_text" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <a class="btn btn-secondary mt-3" href="/homepage_teacher">Back to Home</a>
+    </div>
+
+   
+        <div class="container">
+            <h1 class="mt-5">Add Answer Choice</h1>
+            <form action="/add_question" method="post">
+                <div class="mb-3">
+                    <label for="questionId" class="form-label">Question ID</label>
+                    <input type="text" class="form-control" id="questionId" name="question_id" required>
+                </div>
+                <div class="mb-3">
+                    <label for="choiceText" class="form-label">Choice Text</label>
+                    <input type="text" class="form-control" id="choiceText" name="choice_text" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Is Correct</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="is_correct" id="trueRadio" value="true" required>
+                        <label class="form-check-label" for="trueRadio">True</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="is_correct" id="falseRadio" value="false" required>
+                        <label class="form-check-label" for="falseRadio">False</label>
+                    </div>
+                </div>                
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <a class="btn btn-secondary mt-3" href="/homepage_teacher">Back to Home</a>
+        </div>
+</body>
+{% endblock %}

@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: auto;
+    }
+
+    h4 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    dl.row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    dt.col-sm-3 {
+        flex: 0 0 30%;
+        max-width: 30%;
+        text-align: right;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    dd.col-sm-9 {
+        flex: 0 0 65%;
+        max-width: 65%;
+        margin-bottom: 10px;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    .col-sm-9 {
+        padding-left: 15px;
+    }
+
+    ul.nav {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        padding: 0;
+    }
+
+    .nav-item {
+        margin-right: 10px;
+    }
+
+    .nav-link {
+        text-decoration: none;
+        color: #333;
+    }
+
+    .nav-link.active {
+        font-weight: bold;
+    }
+
+    .nav-link:hover {
+        text-decoration: underline;
+    }
+
+    .nav.justify-content-end {
+        margin-left: auto;
+    }
+
+    .form-floating {
+        margin: 20px auto;
+    }
+
+    .col-auto {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<ul class="nav">
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="/homepage_admin">Home Page</a>
+    </li>
+</ul>
+<ul class="nav">
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="/view_teachers">Back</a>
+    </li>
+</ul>
+<ul class="nav justify-content-end">
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="/logout">Logout</a>
+    </li>
+</ul>
+
+<h4>
+    <div align="center">Teacher Details</div>
+</h4>
+
+{% if teacher %}
+<dl class="row">
+    <dt class="col-sm-3">Teacher Id:</dt>
+    <dd class="col-sm-9">{{teacher.id}}</dd>
+
+    <dt class="col-sm-3">Teacher Name:</dt>
+    <dd class="col-sm-9">
+        {{teacher.name}}
+    </dd>
+
+    <dt class="col-sm-3">Assigned classes:</dt>
+    <dd class="col-sm-9">
+        <p>
+            {% for period in teacher_periods %}
+            {{period.class_id}} (period: {{period.period_number}}) {% if not loop.last %},{% endif %}
+            {% endfor %}
+        </p>
+    </dd>
+
+    <dt class="col-sm-3">Assigned Subjects:</dt>
+    <dd class="col-sm-9">
+        {% for subject in teacher_subjects %}
+            {{subject.subject_id}} ({{subject.subject_name}}) {% if not loop.last %} ,{% endif %}
+            {% endfor %}
+    </dd>
+</dl>
+<div>
+    <h4 align='center'>Update Subjects</h4>
+</div>
+<form class="form-floating" action="/assign_subjects" method="post">
+    <div class="form-floating">
+        <div class="form-floating">
+            <input type="hidden" name="teacher_id" value="{{teacher.id}}">
+            <input type="text" class="form-control" id="floatingInputValue" required="True" name="class_id">
+            <label for="floatingInputValue">Class Id</label>
+        </div>
+        <div class="form-floating">
+            <input type="text" class="form-control" id="floatingInputValue" required="True" name="period_number">
+            <label for="floatingInputValue">period number</label>
+        </div>
+        <div class="form-floating">
+            <input type="text" class="form-control" id="floatingInputValue" required="True" name="subject_id">
+            <label for="floatingInputValue">subject id</label>
+        </div>
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">Update</button>
+    </div>
+</form>
+
+{% endif %}
+
+{% endblock %}

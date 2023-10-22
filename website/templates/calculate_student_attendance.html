@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+  /* Style for the form container */
+  
+form {
+  max-width: 400px; /* Reduce the max width */
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Style for form labels */
+label {
+  font-weight: normal;
+  margin-top: 5px;
+}
+
+/* Style for input fields */
+.form-control {
+  width: 100%;
+  padding: 8px; /* Reduce padding */
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px; /* Adjust font size */
+}
+
+/* Style for date inputs */
+input[type="date"] {
+  width: 100%;
+  padding: 8px; /* Reduce padding */
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px; /* Adjust font size */
+}
+
+/* Style for buttons */
+.btn-primary {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px; /* Increase font size */
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+/* Center the form horizontally */
+.col-auto {
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Style for section headers */
+h5 {
+  margin-top: 20px;
+  font-size: 1.5rem;
+}
+
+/* Style for form links */
+.card-link {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+
+</style>
+
+<ul class="nav">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="/homepage_student">Home Page</a>
+  </li>
+</ul>
+<ul class="nav justify-content-end">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="/logout">Logout</a>
+  </li>
+</ul>
+
+
+<div>
+  <h5 align='center'>Get Attendance</h5>
+</div>
+<div>
+  <form class="form-floating" action="/get_attendance_in_between_dates" method="post">
+    <div class="form-floating">
+      <input type="text" class="form-control" required="True" id="floatingInputValue" name="student_id_form1">
+      <label for="floatingInputValue">student id</label>
+    </div>
+
+    <div class="row g-2">
+      <div class="col-md">
+        <div class="form-floating">
+          <input type="date" class="form-control" required="True" id="floatingInputGrid" placeholder="YYYY-MM-DD" value="YYYY-MM-DD" name="from_date_form1">
+          <label for="floatingInputGrid">from date</label>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="form-floating">
+          <input type="date" class="form-control" required="True" id="floatingInputGrid" placeholder="YYYY-MM-DD" value="YYYY-MM-DD" name="to_date_form1">
+          <label for="floatingInputGrid">to date</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary mb-3">Get Attendance</button>
+    </div>
+  </form>
+</div>
+
+<div>
+  <h6 align='center'>Get Attendance in a month</h6>
+</div>
+<div>
+  <form class="form-floating" action="/get_monthly_attendance" method="post">
+    <div class="form-floating">
+      <input type="text" class="form-control" required="True" id="floatingInputValue" name="student_id_form2">
+      <label for="floatingInputValue">student id</label>
+    </div>
+
+    <div class="form-floating">
+      <input type="text" class="form-control" required="True" id="floatingInputValue" placeholder="YYYY-MM" value="YYYY-MM" name="in_month_form2">
+      <label for="floatingInputValue">In month</label>
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary mb-3">Get Attendance</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

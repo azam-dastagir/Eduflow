@@ -1,0 +1,115 @@
+
+<html>
+    {% extends 'base.html' %}
+    {% block content %}
+    <body>
+        <style>
+            /* Style for the form container */
+         form {
+           max-width: 500px;
+           margin: 0 auto;
+           padding: 20px;
+         }
+         
+         /* Style for the input fields */
+         input[type="text"],
+         input[type="email"],
+         input[type="password"] {
+           width: 100%;
+           padding: 10px;
+           margin-bottom: 10px;
+           border: 1px solid #ccc;
+           border-radius: 5px;
+         }
+         
+         /* Style for the labels */
+         label {
+           font-weight: normal;
+         }
+         
+         /* Style for the submit buttons */
+         button[type="submit"] {
+           display: block;
+           width: 100%;
+           padding: 10px;
+           background-color: #007bff; /* Primary color */
+           color: #fff; /* Text color */
+           border: none;
+           border-radius: 5px;
+           cursor: pointer;
+         }
+         
+         /* Style for the submit buttons on hover */
+         button[type="submit"]:hover {
+           background-color: #0056b3; /* Darker shade of primary color */
+         }
+         
+         /* Style for the form header */
+         h4 {
+           margin-top: 20px;
+           font-size: 1.5rem;
+         }       
+         </style>
+         {% if role == 'teacher' %}
+         <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/homepage_teacher">Home Page</a>
+          </li>
+        </ul>
+        <ul class="nav justify-content-end">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/logout">Logout</a>
+          </li>
+        </ul>
+        {% endif %}
+        {% if role == 'admin' %}
+
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/homepage_admin">Home Page</a>
+          </li>
+        </ul>
+        <ul class="nav justify-content-end">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/logout">Logout</a>
+          </li>
+        </ul>
+
+        {% endif %}
+<div>
+    <h4 align = 'center'>Add Student</h4></div>
+    <form class="form-floating" action="/add_student" method="post">
+      <div class="form-floating">
+      <input type="text" class="form-control" required="True" id="floatingInputValue"  name="full_name">
+      <label for="floatingInputValue">full name</label>
+  </div>
+  
+      <div class="form-floating">
+          <input type="email" class="form-control" required="True" id="floatingInput"  name="email">
+          <label for="floatingInput">email</label>
+    </div>
+  
+    <div class="form-floating">
+          <input type="password" class="form-control" required="True" id="floatingPassword"  name="password">
+          <label for="floatingPassword">password</label>
+      </div>
+      
+      <div class="form-floating">
+          <input type="text" class="form-control" required="True" id="floatingInputValue"  name="class_id">
+      <label for="floatingInputValue">class id</label>
+  </div>
+
+  <div class="form-floating">
+    <input type="email" class="form-control" required="True" id="floatingInputValue"  name="parent_email">
+<label for="floatingInputValue">parent email</label>
+</div>
+  
+
+
+  <div class="col-auto">
+      <button type="submit" class="btn btn-primary mb-3">Add student</button>
+    </div>
+  </form>
+</body>
+{% endblock %}
+  </html>

@@ -1,0 +1,221 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+  /* Center align the headings */
+  h6 {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  /* Container styles */
+  .container {
+    margin: 20px auto;
+    max-width: 500px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+
+  /* Form styles */
+  .form-floating {
+    margin-bottom: 15px;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .form-control:focus {
+    border-color: #007BFF;
+    outline: none;
+  }
+
+  /* Button styles */
+  .btn-primary {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+</style>
+
+<div class="container">
+  {% if role == 'teacher' %}
+  <ul class="nav justify-content-end">
+    <li class="nav-item">
+      <a class="nav-link" href="/homepage_teacher">Home Page</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/logout">Logout</a>
+    </li>
+  </ul>
+  {% endif %}
+  {% if role == 'admin' %}
+  <ul class="nav justify-content-end">
+    <li class="nav-item">
+      <a class="nav-link" href="/homepage_admin">Home Page</a>
+    </li>
+    <li class="nav-item">
+      <a class a="nav-link" href="/logout">Logout</a>
+    </li>
+  </ul>
+  {% endif %}
+  {% if role == 'student' %}
+  <ul class="nav justify-content-end">
+    <li class="nav-item">
+      <a class="nav-link" href="/homepage_student">Home Page</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/logout">Logout</a>
+    </li>
+  </ul>
+  {% endif %}
+
+  <h6>Get Student Attendance for a subject class</h6>
+  <form class="form-floating" action="/post_subject_wise_attendance" method="post">
+    <div class="form-floating">
+      <input type="text" class="form-control" id="student_id_form1" name="student_id_form1">
+      <label for="student_id_form1">Student ID</label>
+    </div>
+    <div class="form-floating">
+      <input type="text" class="form-control" id="class_id_form1" name="class_id_form1">
+      <label for="class_id_form1">Class ID</label>
+    </div>
+    <div class="form-floating">
+      <input type="text" class="form-control" id="subject_id_form1" name="subject_id_form1">
+      <label for="subject_id_form1">Subject ID</label>
+    </div>
+    <h6>OR</h6>
+    <div class="form-floating">
+      <input type="text" class="form-control" id="subject_name_form1" name="subject_name_form1">
+      <label for="subject_name_form1">Subject Name</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Get Attendance</button>
+  </form>
+  
+  <h6>Get Student Attendance for a subject class in month</h6>
+  <form class="form-floating" action="/post_subject_wise_attendance_in_month" method="post">
+    <div class="form-floating">
+      <input type="text" class="form-control" id="student_id_form2" name="student_id_form2">
+      <label for="student_id_form2">Student ID</label>
+    </div>
+    <div class="form-floating">
+      <input type="text" class="form-control" id="class_id_form2" name="class_id_form2">
+      <label for="class_id_form2">Class ID</label>
+    </div>
+    <div class="form-floating">
+      <input type="text" class="form-control" id="subject_id_form2" name="subject_id_form2">
+      <label for="subject_id_form2">Subject ID</label>
+    </div>
+    <h6>OR</h6>
+    <div class="form-floating">
+      <input type="text" class="form-control" id="subject_name_form2" name="subject_name_form2">
+      <label for="subject_name_form2">Subject Name</label>
+    </div>
+    <div class="form-floating">
+      <input type="text" class="form-control" id="in_month_form2" name="in_month_form2">
+      <label for="in_month_form2">In month (YYYY-MM)</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Get Attendance</button>
+  </form>
+
+  <h6>Get Subject-wise Attendance of a Class in a Month</h6>
+  <form class="form-floating" action="/post_subject_wise_attendance_of_class_in_month" method="post">
+    <div class="form-floating">
+      <input type="text" class="form-control" id="class_id_form3" name="class_id_form3">
+      <label for="class_id_form3">Class ID</label>
+    </div>
+    <div class="form-floating">
+      <input type="text" class="form-control" id="subject_id_form3" name="subject_id_form3">
+      <label for="subject_id_form3">Subject ID</label>
+    </div>
+    <h6>OR</h6>
+    <div class="form-floating">
+      <input type="text" class="form-control" id="subject_name_form3" name="subject_name_form3">
+      <label for="subject_name_form3">Subject Name</label>
+    </div>
+    <div class="form-floating">
+      <input type="text" class="form-control" id="in_month_form3" name="in_month_form3">
+      <label for="in_month_form3">In month (YYYY-MM)</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Get Attendance</button>
+  </form>
+
+  <h6>Get Subject-wise Class Attendance in Between Dates</h6>
+  <form class="form-floating" action="/post_subject_wise_class_attendance_in_between_dates" method="post">
+    <div class="form-floating">
+      <input type="text" class="form-control" id="class_id_form4" name="class_id_form4">
+      <label for="class_id_form4">Class ID</label>
+    </div>
+    <div class="form-floating">
+      <input type="text" class="form-control" id="subject_id_form4" name="subject_id_form4">
+      <label for="subject_id_form4">Subject ID</label>
+    </div>
+    <h6>OR</h6>
+    <div class="form-floating">
+      <input type="text" class="form-control" id="subject_name_form4" name="subject_name_form4">
+      <label for="subject_name_form4">Subject Name</label>
+    </div>
+    <div class="row g-2">
+      <div class="col-md">
+        <div class="form-floating">
+          <input type="date" class="form-control" id="from_date_form4" name="from_date_form4">
+          <label for="from_date_form4">From Date</label>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="form-floating">
+          <input type="date" class="form-control" id="to_date_form4" name="to_date_form4">
+          <label for="to_date_form4">To Date</label>
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Get Attendance</button>
+  </form>
+
+  <h6>Get Subject-wise Student Attendance in Between Dates</h6>
+  <form class="form-floating" action="/post_subject_wise_student_attendance_in_between_dates" method="post">
+    <div class="form-floating">
+      <input type="text" class="form-control" id="student_id_form5" name="student_id_form5">
+      <label for="student_id_form5">Student ID</label>
+    </div>
+    <div class="form-floating">
+      <input type="text" class="form-control" id="class_id_form5" name="class_id_form5">
+      <label for="class_id_form5">Class ID</label>
+    </div>
+    <div class="form-floating">
+      <input type="text" class="form-control" id="subject_id_form5" name="subject_id_form5">
+      <label for="subject_id_form5">Subject ID</label>
+    </div>
+    <h6>OR</h6>
+    <div class="form-floating">
+      <input type="text" class="form-control" id="subject_name_form5" name="subject_name_form5">
+      <label for="subject_name_form5">Subject Name</label>
+    </div>
+    <div class="row g-2">
+      <div class="col-md">
+        <div class="form-floating">
+          <input type="date" class="form-control" id="from_date_form5" name="from_date_form5">
+          <label for="from_date_form5">From Date</label>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="form-floating">
+          <input type="date" class="form-control" id="to_date_form5" name="to_date_form5">
+          <label for="to_date_form5">To Date</label>
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Get Attendance</button>
+  </form>
+</div>
+{% endblock %}

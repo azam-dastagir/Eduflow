@@ -1,0 +1,77 @@
+
+<html>
+    {% extends 'base.html' %}
+    {% block content %}
+    <body>
+        <style>
+            /* Style for the form container */
+         form {
+           max-width: 500px;
+           margin: 0 auto;
+           padding: 20px;
+         }
+         
+         /* Style for the input fields */
+         input[type="text"],
+         input[type="email"],
+         input[type="password"] {
+           width: 100%;
+           padding: 10px;
+           margin-bottom: 10px;
+           border: 1px solid #ccc;
+           border-radius: 5px;
+         }
+         
+         /* Style for the labels */
+         label {
+           font-weight: normal;
+         }
+         
+         /* Style for the submit buttons */
+         button[type="submit"] {
+           display: block;
+           width: 100%;
+           padding: 10px;
+           background-color: #007bff; /* Primary color */
+           color: #fff; /* Text color */
+           border: none;
+           border-radius: 5px;
+           cursor: pointer;
+         }
+         
+         /* Style for the submit buttons on hover */
+         button[type="submit"]:hover {
+           background-color: #0056b3; /* Darker shade of primary color */
+         }
+         
+         /* Style for the form header */
+         h4 {
+           margin-top: 20px;
+           font-size: 1.5rem;
+         }       
+         </style>
+
+<ul class="nav">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="/homepage_admin">Home Page</a>
+  </li>
+</ul>
+<ul class="nav justify-content-end">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="/logout">Logout</a>
+  </li>
+</ul>
+<form class="form-floating" action="/add_subject" method="post">
+  <div class="form-floating">
+      <div class="form-floating">
+        <input type="text" class="form-control" id="floatingInputValue" required="True" name="subject_name">
+        <label for="floatingInputValue">subject name</label>
+    </div>
+  </div>
+  <div class="col-auto">
+      <button type="submit" class="btn btn-primary mb-3">Add subject</button>
+  </div>
+</form>
+</body>
+{% endblock %}
+  </html>

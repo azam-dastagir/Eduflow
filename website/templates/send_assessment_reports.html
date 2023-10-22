@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="/homepage_teacher">Home Page</a>
+    </li>
+  </ul>
+  <ul class="nav justify-content-end">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="/logout">Logout</a>
+    </li>
+  </ul>
+<style>
+    /* Add this CSS to your style file or <style> tags in the HTML */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.form-container {
+    max-width: 300px;
+    width: 100%;
+}
+
+.form-floating {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.form-floating input {
+    padding: 0.5rem;
+}
+
+.btn {
+    width: 100%;
+}
+
+</style>
+
+<div class="container">
+    <h6 class="text-center">Send Assessment Report for an Assessment</h6>
+    <form class="form-container" action="/send_assessment_reports" method="post">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" required="True" id="class_id" name="class_id">
+            <label for="class_id">Class ID</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" required="True" id="assessment_id" name="assessment_id">
+            <label for="in_month">Assessment Id</label>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Send</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
